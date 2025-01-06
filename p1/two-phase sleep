@@ -1,0 +1,25 @@
+n = //recebe valor int n 
+array = array[n]
+mutex = semaphore(1)
+s = semaphore(0)
+count = 0
+conta_thread = n
+
+for i=0, i< n, i++ {
+	cria_thread(two_phase_sleep, i)
+}
+
+def two_phase_sleep(int i) {
+	Sleep(random(0,5))
+	array[i] = random(0,10)
+	mutex.wait()
+		count +=1
+		if (count == n) s.signal()
+	mutex.signal()
+	s.wait()
+	s.signal()
+	mutex.wait()
+		conta_thread = conta_thread - 1 
+	mutex.signal()
+	Sleep(array[conta_thread])
+}

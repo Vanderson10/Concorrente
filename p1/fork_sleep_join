@@ -1,0 +1,10 @@
+n = //entrada
+
+
+for i=0, i<n, i++ {
+	create_thread(main, i)
+}
+
+def main(int i):
+	sleep(range(0,5))
+	
